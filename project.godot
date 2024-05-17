@@ -27,7 +27,9 @@ folder_colors={
 "res://debug/": "pink",
 "res://entities/": "blue",
 "res://enviroment/": "green",
-"res://levels/": "orange"
+"res://fonts/": "purple",
+"res://levels/": "orange",
+"res://ui/": "orange"
 }
 
 [layer_names]
