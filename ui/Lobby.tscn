@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi3d4qbp2uyht"]
+
+[ext_resource type="Script" path="res://ui/Lobby.gd" id="1_sr1l7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn51o"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sr1l7")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_top = 24.0
+offset_right = -44.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 120.0
+offset_right = 200.0
+offset_bottom = 197.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_fn51o")
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_fn51o")
+
+[node name="Label3" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_fn51o")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 120.0
+offset_right = 520.0
+offset_bottom = 197.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_fn51o")
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_fn51o")
+
+[node name="Label3" type="Label" parent="Panel/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_fn51o")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 256.0
+offset_right = 188.0
+offset_bottom = 287.0
+text = "Join A"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 256.0
+offset_right = 516.0
+offset_bottom = 287.0
+text = "Join B"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 272.0
+offset_right = 344.0
+offset_bottom = 303.0
+text = "START"
+
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

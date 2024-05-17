@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dy60ty1xnrpyp"]
+[gd_scene load_steps=3 format=3 uid="uid://dy60ty1xnrpyp"]
 
 [ext_resource type="FontFile" uid="uid://lhllcxkjd4mx" path="res://fonts/Chonkly.otf" id="1_jdtvk"]
+[ext_resource type="FontFile" uid="uid://ddlww8dbl2rsl" path="res://fonts/PublicPixel.otf" id="2_6wajq"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -16,9 +17,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 164.0
-offset_top = 48.0
+offset_top = 44.0
 offset_right = -164.0
-offset_bottom = -48.0
+offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -45,3 +46,75 @@ bbcode_enabled = true
 text = "[center][wave amp=15 freq=3]Botanical Creatures[/wave]
 [/center]"
 fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6wajq")
+text = "Host"
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6wajq")
+text = "Create lobby"
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6wajq")
+text = "Join"
+
+[node name="IP" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/IP"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6wajq")
+text = "IP:"
+
+[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/IP"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_6wajq")
+text = "localhost"
+virtual_keyboard_type = 2
+
+[node name="IP2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/IP2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6wajq")
+text = "Port:"
+
+[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/IP2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_6wajq")
+text = "6000"
+virtual_keyboard_type = 2
+
+[node name="User" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/User"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6wajq")
+text = "Nick:"
+
+[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/User"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_6wajq")
+text = "Player"
+placeholder_text = "Player"
+virtual_keyboard_type = 2
+
+[node name="Button2" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6wajq")
+text = "Join lobby"

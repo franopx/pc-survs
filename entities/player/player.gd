@@ -11,6 +11,10 @@ var jump_pressed: bool = false
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
+func _ready():
+	if(is_multiplayer_authority()):
+		$Camera2D.enabled = true
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
