@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcurgsin3ym4b"]
+
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_flgx5"]
+[ext_resource type="Texture2D" uid="uid://dcwd2l26qrauv" path="res://entities/player/sprites/happy_student.png" id="2_qvh4m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijipx"]
+size = Vector2(14, 18)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_flgx5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qvh4m")
+offset = Vector2(-1, -7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ijipx")
