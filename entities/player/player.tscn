@@ -23,3 +23,4 @@ shape = SubResource("RectangleShape2D_ijipx")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_4a1n2")
+visibility_update_mode = 1
