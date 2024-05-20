@@ -1,15 +1,17 @@
 extends Control
 
+var player_list
 
-# Called when the node enters the scene tree for the first time.
+@onready var slots = [%"0", %"1", %"2", %"3", %"4", %"5"]
+
 func _ready():
-	pass # Replace with function body.
+	PlayerList.connect("player_connected", add_player_list)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+func add_player_list(_name):
+	for slot in slots:
+		if slot.text == "":
+			slot.text = _name
+			return
 
 func _on_button_3_pressed():
 	# start game

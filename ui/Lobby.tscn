@@ -1,8 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bi3d4qbp2uyht"]
 
 [ext_resource type="Script" path="res://ui/Lobby.gd" id="1_sr1l7"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn51o"]
+[ext_resource type="PackedScene" path="res://ui/PlayerSlotLabel.tscn" id="2_g3pw2"]
 
 [node name="Lobby" type="Control"]
 layout_mode = 3
@@ -32,17 +31,17 @@ offset_top = 120.0
 offset_right = 200.0
 offset_bottom = 197.0
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+[node name="0" parent="Panel/VBoxContainer" instance=ExtResource("2_g3pw2")]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_fn51o")
 
-[node name="Label2" type="Label" parent="Panel/VBoxContainer"]
+[node name="1" parent="Panel/VBoxContainer" instance=ExtResource("2_g3pw2")]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_fn51o")
 
-[node name="Label3" type="Label" parent="Panel/VBoxContainer"]
+[node name="2" parent="Panel/VBoxContainer" instance=ExtResource("2_g3pw2")]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_fn51o")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
@@ -51,17 +50,17 @@ offset_top = 120.0
 offset_right = 520.0
 offset_bottom = 197.0
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer2"]
+[node name="3" parent="Panel/VBoxContainer2" instance=ExtResource("2_g3pw2")]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_fn51o")
 
-[node name="Label2" type="Label" parent="Panel/VBoxContainer2"]
+[node name="4" parent="Panel/VBoxContainer2" instance=ExtResource("2_g3pw2")]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_fn51o")
 
-[node name="Label3" type="Label" parent="Panel/VBoxContainer2"]
+[node name="5" parent="Panel/VBoxContainer2" instance=ExtResource("2_g3pw2")]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_fn51o")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjng05dav3hgk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn51o"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_whv5u"]
+properties/0/path = NodePath(".:text")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="PlayerSlot" type="Label"]
+theme_override_styles/normal = SubResource("StyleBoxFlat_fn51o")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_whv5u")
