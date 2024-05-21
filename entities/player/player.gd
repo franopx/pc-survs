@@ -5,8 +5,15 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const JUMP_CUTOFF = 0.9
 
+var connection
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var jump_pressed: bool = false
+
+signal flip
+
+func get_peer_id():
+	return multiplayer.get_unique_id()
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
@@ -14,6 +21,8 @@ func _enter_tree():
 func _ready():
 	if(is_multiplayer_authority()):
 		$Camera2D.enabled = true
+	
+	print(name + " --- " + str(multiplayer.get_unique_id()))
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -39,6 +48,12 @@ func _physics_process(delta):
 	var direction = 0
 	if(is_multiplayer_authority()):
 		direction = Input.get_axis("ui_left", "ui_right")
+	
+	if(direction > 0 and $Sprite2D.flip_h):
+		get_parent().flip_sprite(multiplayer.get_unique_id(), false)
+	
+	if(direction < 0 and !$Sprite2D.flip_h):
+		get_parent().flip_sprite(multiplayer.get_unique_id(), true)
 	
 	if direction:
 		velocity.x = direction * SPEED

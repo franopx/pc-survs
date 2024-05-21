@@ -8,6 +8,7 @@ func _ready():
 	PlayerList.connect("player_connected", add_player_list)
 
 func add_player_list(_name):
+	#print("HELOO=?")
 	for slot in slots:
 		if slot.text == "":
 			slot.text = _name
