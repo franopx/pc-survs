@@ -33,7 +33,13 @@ func _ready():
 	
 	%StartMatchButton.pressed.connect(
 		func():
-			rpc("_start_match")
+			var player_list = []
+			for player in %RedTeamPlayerList.get_children(): # "player" es una hbox conteniendo label de id - nombre
+				player_list.append([player.name, player.get_child(1).text, "Red"])
+	
+			for player in %BlueTeamPlayerList.get_children(): # "player" es una hbox conteniendo label de id - nombre
+				player_list.append([player.name, player.get_child(1).text, "Blue"])
+			rpc("_start_match", player_list)
 	)
 
 
@@ -92,16 +98,8 @@ func _on_spectator_team_button_pressed():
 
 
 @rpc("any_peer", "call_local", "reliable")
-func _start_match():
-	
-	var player_list = []
-	for player in %RedTeamPlayerList.get_children(): # "player" es una hbox conteniendo label de id - nombre
-		player_list.append([player.name, player.get_child(1).text, "Red"])
-	
-	for player in %BlueTeamPlayerList.get_children(): # "player" es una hbox conteniendo label de id - nombre
-		player_list.append([player.name, player.get_child(1).text, "Blue"])
-	
-	Netcode.player_lobby = player_list
+func _start_match(_player_list):
+	Netcode.player_lobby = _player_list
 	
 	get_tree().change_scene_to_file("res://levels/level_1/level_1.tscn")
 

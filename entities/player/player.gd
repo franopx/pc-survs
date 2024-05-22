@@ -15,10 +15,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var jump_pressed: bool = false
 
 
-func get_peer_id():
-	return multiplayer.get_unique_id()
-
-
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
@@ -53,6 +49,10 @@ func _physics_process(delta):
 	
 	if direction:
 		velocity.x = direction * SPEED
+		
+		if(direction < 0): $Sprite2D.flip_h = true
+		else: $Sprite2D.flip_h = false
+		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 

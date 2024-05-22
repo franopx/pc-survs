@@ -8,6 +8,9 @@ var blue_slots = [1, 1, 1]
 func _ready():
 	for peer in Netcode.player_lobby:
 		var player = player_scene.instantiate()
+		
+		print(peer)
+		
 		player.name = peer[0]
 		player.nick = peer[1]
 		player.team = peer[2]
@@ -27,7 +30,7 @@ func _ready():
 					player.position = %BluePlayerPos.get_child(i).global_position
 					blue_slots[i] = 0
 					break
-		
-		add_child(player)
 		player.get_node("Label").text = player.nick
+		
+		add_child(player, true)
 
