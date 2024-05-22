@@ -11,19 +11,24 @@ config_version=5
 [application]
 
 config/name="botanical_creatures"
-run/main_scene="res://levels/level_1/level_1.tscn"
+run/main_scene="res://ui/PlaceholderLobby.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Netcode="*res://autoload/netcode.gd"
+
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
 [file_customization]
 
 folder_colors={
+"res://autoload/": "pink",
 "res://debug/": "pink",
 "res://entities/": "blue",
 "res://enviroment/": "green",

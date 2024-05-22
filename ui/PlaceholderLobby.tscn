@@ -1,0 +1,179 @@
+[gd_scene load_steps=2 format=3 uid="uid://d130wegiyjtsn"]
+
+[ext_resource type="Script" path="res://autoload/menu.gd" id="1_fo42o"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fo42o")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 54.0
+offset_right = -872.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelVBox" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="PlayerNameLabel" type="Label" parent="Panel/MarginContainer/PanelVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Player name:"
+
+[node name="PlayerNameLineEdit" type="LineEdit" parent="Panel/MarginContainer/PanelVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="IpHBox" type="HBoxContainer" parent="Panel/MarginContainer/PanelVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="IpLabel" type="Label" parent="Panel/MarginContainer/PanelVBox/IpHBox"]
+layout_mode = 2
+text = "IP:"
+
+[node name="IpLineEdit" type="LineEdit" parent="Panel/MarginContainer/PanelVBox/IpHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "localhost"
+
+[node name="ConnectButton" type="Button" parent="Panel/MarginContainer/PanelVBox/IpHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Connect"
+
+[node name="HostButton" type="Button" parent="Panel/MarginContainer/PanelVBox/IpHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Host"
+
+[node name="PlayerListLabel" type="Label" parent="Panel/MarginContainer/PanelVBox"]
+layout_mode = 2
+text = "Player list:"
+
+[node name="PlayerListVBox" type="VBoxContainer" parent="Panel/MarginContainer/PanelVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SpectatorTeamButton" type="Button" parent="Panel/MarginContainer/PanelVBox"]
+layout_mode = 2
+text = "Join spectator"
+
+[node name="RedTeamPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 434.0
+offset_top = 54.0
+offset_right = -520.0
+offset_bottom = -248.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="RedTeamPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="RedTeamVbox" type="VBoxContainer" parent="RedTeamPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RedTeamPanel/MarginContainer/RedTeamVbox"]
+layout_mode = 2
+text = "Red Team"
+
+[node name="RedTeamPlayerList" type="VBoxContainer" parent="RedTeamPanel/MarginContainer/RedTeamVbox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RedTeamButton" type="Button" parent="RedTeamPanel/MarginContainer/RedTeamVbox"]
+layout_mode = 2
+text = "Join red team"
+
+[node name="BlueTeamPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 780.0
+offset_top = 54.0
+offset_right = -184.0
+offset_bottom = -248.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BlueTeamPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="BlueTeamVbox" type="VBoxContainer" parent="BlueTeamPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BlueTeamPanel/MarginContainer/BlueTeamVbox"]
+layout_mode = 2
+text = "Blue Team"
+
+[node name="BlueTeamPlayerList" type="VBoxContainer" parent="BlueTeamPanel/MarginContainer/BlueTeamVbox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BlueTeamButton" type="Button" parent="BlueTeamPanel/MarginContainer/BlueTeamVbox"]
+layout_mode = 2
+text = "Join blue team"
+
+[node name="StartMatchButton" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 434.0
+offset_top = 557.0
+offset_right = 1064.0
+offset_bottom = 595.0
+text = "Start match"
+
+[connection signal="pressed" from="Panel/MarginContainer/PanelVBox/SpectatorTeamButton" to="." method="_on_spectator_team_button_pressed"]
+[connection signal="pressed" from="RedTeamPanel/MarginContainer/RedTeamVbox/RedTeamButton" to="." method="_on_red_team_button_pressed"]
+[connection signal="pressed" from="BlueTeamPanel/MarginContainer/BlueTeamVbox/BlueTeamButton" to="." method="_on_blue_team_button_pressed"]
