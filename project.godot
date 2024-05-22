@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="idvrv_toma"
+config/name="botanical_creatures"
 run/main_scene="res://levels/level_1/level_1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
