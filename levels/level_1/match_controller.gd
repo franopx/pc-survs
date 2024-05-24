@@ -11,7 +11,7 @@ var blue_players := []
 
 func _ready():
 	
-	if(multiplayer.is_server()):
+	if(!multiplayer.is_server()):
 		%RematchButton.text = "WAIT FOR HOST..."
 		%RematchButton.disabled = true
 	

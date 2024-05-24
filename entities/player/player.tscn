@@ -5,8 +5,8 @@
 [ext_resource type="FontFile" uid="uid://ddlww8dbl2rsl" path="res://fonts/PublicPixel.otf" id="3_0wsqc"]
 [ext_resource type="FontFile" uid="uid://lhllcxkjd4mx" path="res://fonts/Chonkly.otf" id="3_avomy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijipx"]
-size = Vector2(14, 18)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7t5xh"]
+size = Vector2(22, 30.75)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp3kc"]
 bg_color = Color(0, 0, 0, 1)
@@ -26,8 +26,9 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_np6i2"]
-height = 26.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3qire"]
+radius = 17.0
+height = 52.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_flgx5")
@@ -38,7 +39,8 @@ offset = Vector2(-1, -7)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ijipx")
+position = Vector2(0, -4.25)
+shape = SubResource("RectangleShape2D_7t5xh")
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -111,7 +113,6 @@ polygon = PackedVector2Array(-4, -2, 0, -3, 5, -3, 6, -2, 10, -2, 10, -3, 11, -3
 [node name="ClickGizmos" type="Node" parent="."]
 
 [node name="LeftPoly" type="Polygon2D" parent="ClickGizmos"]
-visible = false
 color = Color(1, 0, 0, 1)
 polygon = PackedVector2Array(-5, -6, -5, 4, 2, 4, 2, 1, -2, 1, -2, -6)
 metadata/_edit_lock_ = true
@@ -128,7 +129,6 @@ text = "0"
 metadata/_edit_use_anchors_ = true
 
 [node name="RightPoly" type="Polygon2D" parent="ClickGizmos"]
-visible = false
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(-5, -6, -5, 4, -3, 4, -3, 0, -2, 1, 1, 4, 2, 4, 2, 2, -1, -1, 1, -1, 2, -2, 2, -5, 1, -6, -2, -6)
 metadata/_edit_lock_ = true
@@ -144,7 +144,6 @@ theme_override_font_sizes/font_size = 8
 text = "0"
 
 [node name="Hover" type="Polygon2D" parent="ClickGizmos"]
-visible = false
 color = Color(0, 1, 0, 1)
 polygon = PackedVector2Array(0, -3, 3, 0, 0, 3, -3, 0)
 
@@ -163,8 +162,8 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, -3)
-shape = SubResource("CapsuleShape2D_np6i2")
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_3qire")
 debug_color = Color(0.906409, 0.000128605, 0.743437, 0.42)
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

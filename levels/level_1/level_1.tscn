@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://clkq3o25u23rv" path="res://enviroment/tilemaps/tileset_0.tres" id="1_k5j4s"]
 [ext_resource type="Script" path="res://levels/level_1/match_controller.gd" id="1_sjyce"]
-[ext_resource type="PackedScene" uid="uid://bcurgsin3ym4b" path="res://entities/player/player.tscn" id="2_1knh0"]
+[ext_resource type="PackedScene" uid="uid://dxfjiwa4gockd" path="res://entities/player/player_pavo.tscn" id="2_r1spj"]
 [ext_resource type="Script" path="res://levels/level_1/ShotManager.gd" id="4_idfmt"]
 [ext_resource type="PackedScene" uid="uid://cf3eyikon4vis" path="res://entities/player/basic_shot.tscn" id="5_73ena"]
 [ext_resource type="FontFile" uid="uid://lhllcxkjd4mx" path="res://fonts/Chonkly.otf" id="6_sa1dg"]
@@ -51,7 +51,7 @@ corner_radius_bottom_left = 8
 
 [node name="Level_1" type="Node2D"]
 script = ExtResource("1_sjyce")
-player_scene = ExtResource("2_1knh0")
+player_scene = ExtResource("2_r1spj")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_k5j4s")
@@ -72,7 +72,7 @@ position = Vector2(103, 10)
 
 [node name="BluePlayerPos" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(669, 445)
+position = Vector2(2794, 553)
 
 [node name="B1" type="Marker2D" parent="BluePlayerPos"]
 position = Vector2(-130, 5)

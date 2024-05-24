@@ -1,0 +1,142 @@
+[gd_scene load_steps=15 format=3 uid="uid://dxfjiwa4gockd"]
+
+[ext_resource type="PackedScene" uid="uid://bcurgsin3ym4b" path="res://entities/player/player.tscn" id="1_gpqgv"]
+[ext_resource type="Script" path="res://entities/player/player_pavo.gd" id="2_ja2h5"]
+[ext_resource type="Texture2D" uid="uid://ce6fej0p6r1nh" path="res://entities/player/sprites/pavo.png" id="2_yo5am"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xn5ny"]
+atlas = ExtResource("2_yo5am")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a68jj"]
+atlas = ExtResource("2_yo5am")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qf2d"]
+atlas = ExtResource("2_yo5am")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0alwn"]
+atlas = ExtResource("2_yo5am")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugv1v"]
+atlas = ExtResource("2_yo5am")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnkvn"]
+atlas = ExtResource("2_yo5am")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqami"]
+atlas = ExtResource("2_yo5am")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1d0t5"]
+atlas = ExtResource("2_yo5am")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnolh"]
+atlas = ExtResource("2_yo5am")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6abuc"]
+atlas = ExtResource("2_yo5am")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j2uwu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xn5ny")
+}],
+"loop": true,
+"name": &"air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a68jj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qf2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0alwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugv1v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnkvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xn5ny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqami")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1d0t5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnolh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6abuc")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[node name="Player_Pavo" instance=ExtResource("1_gpqgv")]
+script = ExtResource("2_ja2h5")
+SPEED = 350.0
+ACCEL = 14.0
+JUMP_VELOCITY = -450.0
+JUMP_CUTOFF = 0.94
+max_hp = 3
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(-4, -23)
+sprite_frames = SubResource("SpriteFrames_j2uwu")
+animation = &"air"
+
+[node name="Sprite2D" parent="." index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -6.375)
+
+[node name="HP" parent="." index="5"]
+offset_top = 29.0
+offset_bottom = 38.0
+max_value = 3.0
+value = 3.0
+
+[node name="Label" parent="." index="6"]
+offset_top = 14.0
+offset_bottom = 26.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+text = "pavito"
+
+[node name="OuchLabel" parent="." index="7"]
+offset_left = 39.0
+offset_top = 28.0
+offset_right = 173.0
+offset_bottom = 40.0
+horizontal_alignment = 0
+
+[node name="GunArmGizmo" parent="." index="8"]
+position = Vector2(0, -10)
+offset = Vector2(-1, -2)
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, -17)

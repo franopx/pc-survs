@@ -12,10 +12,11 @@ var spectable_players = []
 var current_player = 0
 
 # movement related
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-const JUMP_CUTOFF = 0.9
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@export var SPEED := 300.0
+@export var ACCEL := 12.0
+@export var JUMP_VELOCITY := -400.0
+@export var JUMP_CUTOFF := 0.9
+@export var gravity := 890.0
 
 # projectile
 var shots_manager
@@ -23,8 +24,8 @@ var shot_type = "basic"
 var shot_count = 0
 var basic_cooldown: Timer
 
-var max_hp = 16
-var hp = 16
+@export var max_hp := 16
+@onready var hp = max_hp
 
 # input variables and signals
 var direction = 0
@@ -142,13 +143,13 @@ func _physics_process(delta):
 		direction = Input.get_axis("ui_left", "ui_right")
 	
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = move_toward(velocity.x, direction * SPEED, ACCEL)
 		
 		if(direction < 0): $Sprite2D.flip_h = true
 		else: $Sprite2D.flip_h = false
 		
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, ACCEL*2)
 
 	move_and_slide()
 
@@ -182,14 +183,11 @@ func data_sender(_is_mouse = false):
 		if(is_multiplayer_authority()):
 			send_position.rpc(name, position, velocity, direction, jump_pressed)
 			
-			if(multiplayer.is_server()):
-				var match_info = get_parent() as Match
-				for p in match_info.get_children():
-					if(p is Player):
-						sync_hp.rpc(p.name, p.hp)
-			
 			if(_is_mouse):
 				send_cursor.rpc(name, cursor_position, MOUSE_BUTTON_NONE)
+		
+		sync_hp.rpc(name, hp)
+
 
 func update_position(_name, _position, _velocity, _direction, _jump):
 	if(name == _name):
@@ -230,17 +228,20 @@ func send_cursor(_name, _position,_button_index):
 
 func _on_hurt_box_area_entered(area):
 	if(!area.name.begins_with(name)):
-		$OuchLabel.modulate.a = 1.0
-		hp -= 1
-		$HP.value = hp
+		
+		if(area.name == "CollisionArea"): 
+			print("bullet with no owner")
+		else:
+			$OuchLabel.modulate.a = 1.0
+			hp -= 1
+			$HP.value = hp
 		
 		if(hp <= 0 and player_state == state.alive):
 			$Sprite2D.modulate = Color.DIM_GRAY
 			player_state = state.spectator
 			Netcode.player_killed.emit(name)
 			reparent_cam(current_player)
-	else:
-		print("IM IMMUNE")
+
 
 func reparent_cam(_player):
 	cam.name = name + "cam"
