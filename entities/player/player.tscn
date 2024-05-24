@@ -1,11 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcurgsin3ym4b"]
+[gd_scene load_steps=9 format=3 uid="uid://bcurgsin3ym4b"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_flgx5"]
 [ext_resource type="Texture2D" uid="uid://dcwd2l26qrauv" path="res://entities/player/sprites/happy_student.png" id="2_qvh4m"]
 [ext_resource type="FontFile" uid="uid://ddlww8dbl2rsl" path="res://fonts/PublicPixel.otf" id="3_0wsqc"]
+[ext_resource type="FontFile" uid="uid://lhllcxkjd4mx" path="res://fonts/Chonkly.otf" id="3_avomy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijipx"]
 size = Vector2(14, 18)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp3kc"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lqul8"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_np6i2"]
+height = 26.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_flgx5")
@@ -13,18 +35,52 @@ script = ExtResource("1_flgx5")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_qvh4m")
 offset = Vector2(-1, -7)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ijipx")
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
 position_smoothing_enabled = true
+metadata/_edit_lock_ = true
 
 [node name="DataClock" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.01
+wait_time = 0.001
 autostart = true
+
+[node name="HP" type="ProgressBar" parent="."]
+offset_left = -14.0
+offset_top = 15.0
+offset_right = 35.0
+offset_bottom = 24.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cp3kc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lqul8")
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="HP"]
+self_modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -39.0
+offset_top = -3.0
+offset_right = -39.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_avomy")
+theme_override_font_sizes/font_size = 12
+text = "HP"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label" type="Label" parent="."]
 offset_left = -67.0
@@ -34,3 +90,81 @@ offset_bottom = -26.0
 theme_override_fonts/font = ExtResource("3_0wsqc")
 theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="OuchLabel" type="Label" parent="."]
+modulate = Color(1, 0, 0, 0)
+offset_left = -67.0
+offset_top = -52.0
+offset_right = 67.0
+offset_bottom = -40.0
+theme_override_fonts/font = ExtResource("3_0wsqc")
+theme_override_font_sizes/font_size = 8
+text = "OUCH!!"
+horizontal_alignment = 1
+
+[node name="GunArmGizmo" type="Polygon2D" parent="."]
+color = Color(0.632225, 1.9493e-06, 3.36915e-07, 1)
+offset = Vector2(3.555, -0.87)
+polygon = PackedVector2Array(-4, -2, 0, -3, 5, -3, 6, -2, 10, -2, 10, -3, 11, -3, 12, -2, 13, -2, 13, 1, 9, 1, 8, 0, 5, 0, 4, 1, 2, 2, 0, 6, -2, 5, -2, 4, -1, 2, -2, 1, -2, -1, -4, -1)
+
+[node name="ClickGizmos" type="Node" parent="."]
+
+[node name="LeftPoly" type="Polygon2D" parent="ClickGizmos"]
+visible = false
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-5, -6, -5, 4, 2, 4, 2, 1, -2, 1, -2, -6)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="ClickGizmos/LeftPoly"]
+offset_left = 3.0
+offset_top = -5.0
+offset_right = 108.0
+offset_bottom = 4.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_0wsqc")
+theme_override_font_sizes/font_size = 8
+text = "0"
+metadata/_edit_use_anchors_ = true
+
+[node name="RightPoly" type="Polygon2D" parent="ClickGizmos"]
+visible = false
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(-5, -6, -5, 4, -3, 4, -3, 0, -2, 1, 1, 4, 2, 4, 2, 2, -1, -1, 1, -1, 2, -2, 2, -5, 1, -6, -2, -6)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="ClickGizmos/RightPoly"]
+offset_left = 3.0
+offset_top = -5.0
+offset_right = 108.0
+offset_bottom = 4.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_fonts/font = ExtResource("3_0wsqc")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="Hover" type="Polygon2D" parent="ClickGizmos"]
+visible = false
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(0, -3, 3, 0, 0, 3, -3, 0)
+
+[node name="Label" type="Label" parent="ClickGizmos/Hover"]
+offset_left = 6.0
+offset_top = -3.0
+offset_right = 111.0
+offset_bottom = 6.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_0wsqc")
+theme_override_font_sizes/font_size = 6
+text = "0"
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_np6i2")
+debug_color = Color(0.906409, 0.000128605, 0.743437, 0.42)
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

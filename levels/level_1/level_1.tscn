@@ -1,8 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3a1y7hdbu03o"]
+[gd_scene load_steps=13 format=3 uid="uid://b3a1y7hdbu03o"]
 
 [ext_resource type="TileSet" uid="uid://clkq3o25u23rv" path="res://enviroment/tilemaps/tileset_0.tres" id="1_k5j4s"]
 [ext_resource type="Script" path="res://levels/level_1/match_controller.gd" id="1_sjyce"]
 [ext_resource type="PackedScene" uid="uid://bcurgsin3ym4b" path="res://entities/player/player.tscn" id="2_1knh0"]
+[ext_resource type="Script" path="res://levels/level_1/ShotManager.gd" id="4_idfmt"]
+[ext_resource type="PackedScene" uid="uid://cf3eyikon4vis" path="res://entities/player/basic_shot.tscn" id="5_73ena"]
+[ext_resource type="FontFile" uid="uid://lhllcxkjd4mx" path="res://fonts/Chonkly.otf" id="6_sa1dg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttdlp"]
+bg_color = Color(0, 0.65098, 0.239216, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7efel"]
+bg_color = Color(0.388982, 1, 0.507897, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lshuj"]
+bg_color = Color(3.36915e-07, 0.423486, 0.144408, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b21xq"]
+bg_color = Color(0.65, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sb1lc"]
+bg_color = Color(1, 0.39, 0.39, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lfuxg"]
+bg_color = Color(0.42, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Level_1" type="Node2D"]
 script = ExtResource("1_sjyce")
@@ -37,6 +82,84 @@ position = Vector2(-130, 5)
 [node name="B3" type="Marker2D" parent="BluePlayerPos"]
 position = Vector2(103, 10)
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://entities/player/player.tscn")
+[node name="ShotManager" type="Node2D" parent="."]
+script = ExtResource("4_idfmt")
+basic_shot_scene = ExtResource("5_73ena")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="ShotManager"]
+_spawnable_scenes = PackedStringArray("res://entities/player/basic_shot.tscn")
 spawn_path = NodePath("..")
+
+[node name="WinScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="WinScreen" type="Control" parent="WinScreen"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="Panel" type="Panel" parent="WinScreen/WinScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.734
+anchor_bottom = 0.778
+offset_left = -156.0
+offset_top = -105.0
+offset_right = -155.52
+offset_bottom = -105.16
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinScreen/WinScreen/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Winner" type="Label" parent="WinScreen/WinScreen/Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("6_sa1dg")
+theme_override_font_sizes/font_size = 40
+text = "TEAM WINS!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RematchButton" type="Button" parent="WinScreen/WinScreen/Panel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("6_sa1dg")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ttdlp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7efel")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lshuj")
+text = "REMATCH"
+
+[node name="HomeButton" type="Button" parent="WinScreen/WinScreen/Panel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("6_sa1dg")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_b21xq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sb1lc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lfuxg")
+text = "BACK TO MENU"
+
+[node name="EmptySpace" type="Control" parent="WinScreen/WinScreen/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2

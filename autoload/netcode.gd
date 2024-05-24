@@ -15,7 +15,9 @@ signal add_player(id, name)
 signal change_team(id, team)
 
 # unreliable
-signal player_moved(id, position)
+signal player_moved(_name, _position, _velocity, _direction, _jump)
+signal player_cursor_action(_name, _cursor_position, _button_index)
+signal player_killed(_name)
 
 # Useful
 	# multiplayer.peer_connected.connect(_on_player_connected)
@@ -37,7 +39,8 @@ func _ready():
 	
 
 func print_state():
-	print(peer)
+	pass
+	#print(peer)
 
 func _host_server():
 	peer.create_server(PORT)
@@ -73,3 +76,7 @@ func _register_connected_players(peers):
 	for peer in peers:
 		if(peer != multiplayer.get_unique_id()): 
 			connected_peers.append(peer)
+
+@rpc("authority", "call_local", "reliable")
+func reload():
+	get_tree().reload_current_scene()
