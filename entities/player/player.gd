@@ -22,11 +22,13 @@ func _enter_tree():
 func _ready():
 	if(is_multiplayer_authority()):
 		$Camera2D.enabled = true
-
+	
+	%DataClock.timeout.connect(data_sender)
+	Netcode.player_moved.connect(update_position)
 
 func _physics_process(delta):
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and is_multiplayer_authority():
 		velocity.y += gravity * delta
 	
 	# Handle jump pression detection for smaller jumps
@@ -57,3 +59,17 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+func data_sender():
+	if(is_multiplayer_authority()):
+		print("Sending update pos from "+name)
+		send_position.rpc(name, position)
+
+func update_position(_name, _position):
+	if(name.to_int() == multiplayer.get_remote_sender_id()):
+		$Sprite2D.flip_h = (position.x - _position.x > 0)
+		position = lerp(position, _position, 0.5)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func send_position(_name, _position):
+	Netcode.player_moved.emit(_name, _position)

@@ -40,6 +40,3 @@ position = Vector2(103, 10)
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://entities/player/player.tscn")
 spawn_path = NodePath("..")
-
-[node name="1" parent="." instance=ExtResource("2_1knh0")]
-position = Vector2(241, 484)

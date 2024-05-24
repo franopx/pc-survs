@@ -14,12 +14,30 @@ var peer = ENetMultiplayerPeer.new()
 signal add_player(id, name)
 signal change_team(id, team)
 
+# unreliable
+signal player_moved(id, position)
+
 # Useful
 	# multiplayer.peer_connected.connect(_on_player_connected)
 	# multiplayer.peer_disconnected.connect(_on_player_disconnected)
 	# multiplayer.connected_to_server.connect(_on_connected_ok)
 	# multiplayer.connection_failed.connect(_on_connected_fail)
 	# multiplayer.server_disconnected.connect(_on_server_disconnected)
+
+var timer: Timer
+
+func _ready():
+	timer = Timer.new()
+	timer.wait_time = 1
+	timer.timeout.connect(print_state)
+	timer.start()
+	
+	call_deferred("get_tree().root.add_child", timer)
+	#get_tree().root.add_child(timer)
+	
+
+func print_state():
+	print(peer)
 
 func _host_server():
 	peer.create_server(PORT)
