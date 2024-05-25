@@ -97,10 +97,11 @@ func _on_spectator_team_button_pressed():
 	Netcode.current_team = "Spectator"
 
 
-@rpc("any_peer", "call_local", "reliable")
+@rpc("authority", "call_local", "reliable")
 func _start_match(_player_list):
-	Netcode.player_lobby = _player_list
 	
+	Netcode.player_lobby = _player_list
+	print("Player " + Netcode.player_name + ": LIST "+ str(_player_list))
 	get_tree().change_scene_to_file("res://levels/level_1/level_1.tscn")
 
 

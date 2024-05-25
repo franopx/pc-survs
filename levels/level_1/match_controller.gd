@@ -49,6 +49,7 @@ func _ready():
 			get_tree().change_scene_to_file("res://ui/PlaceholderLobby.tscn")
 	)
 	
+	await get_tree().create_timer(1).timeout
 	# Spawn players
 	for peer in Netcode.player_lobby:
 		var player = player_scene.instantiate()
